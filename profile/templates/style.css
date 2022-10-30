@@ -1,0 +1,428 @@
+/**
+ * If using a CSS pre-processor, tell it to overwrite this file. If not, place
+ * your custom CSS modifications here.
+ */
+
+/**
+View Name: Gallery Article View
+CSS added by: Pragya.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
+body{
+	font-family: 'Noto Sans', sans-serif;
+	font-style:normal;
+	margin-top: 0;
+}
+.article h3 {
+  padding-bottom: 10px;
+}
+
+.views-field-field-article-image div img{
+  margin-right: auto;
+  margin-left: auto;
+}
+@media only screen and (max-width: 600px) {
+  body{
+    background-color: lightblue;
+  }
+    .gallery-article{
+    width:100% !important;
+  }
+}
+/****** End ***/
+
+/**
+Field: Article like dislike
+CSS added by: Manoj.
+ */
+.article-like div.vote-like {
+  display: inline-block;
+}
+
+.article-like div.vote-like a,
+.article-like div.vote-like a:link,
+.article-like div.vote-like a:visited {
+  background: url('../images/heart.png') no-repeat;
+  text-indent: -9999px;
+  display: inline-block;
+  border: 0;
+  cursor: pointer;
+  width: 19px;
+  height: 19px;
+}
+
+.article-like div.vote-like a {
+  background-position: 0 0;
+}
+
+
+.article-like div.vote-like a.voted {
+  background-position: 0 -29px!important;
+}
+
+.article-like div.vote-like a:hover {
+  background-position: 0 -58px;
+}
+
+.article-like div.vote-dislike {
+  display: none;
+}
+
+/****** End ***/
+
+.groups .badge{
+    background-color:#ebe166;
+}
+section#block-bannerblock img {
+    width: 100%;
+    height: auto;
+}
+/*css by sandeep   */
+.top-header .navbar-nav>li>a.is-active {
+    color: #264586;
+}
+.top-header .navbar-nav > li > a {
+    font-size: 15px;
+    color: gray;
+	font-weight:600px;
+	padding-bottom: 10px;
+	text-decoration: none;
+}
+.top-header a {
+    font-size: 15px;
+	color: gray;
+	font-weight: 600;
+}
+.top-header .menu--main > li > a:hover {
+    border-bottom: 2px solid;
+    background: none;
+}
+.container-fluid.top-header {
+    margin-bottom: 15px;
+    background-color: #fff !important;
+    box-shadow: 0px 1px 15px 0px #ccc;
+	padding-bottom: 5px;
+}
+.top-header .col-md-4.logo {
+    padding-top: 35px;
+}
+.top-header ul.menu.menu--account.nav.navbar-nav.navbar-right {
+    padding-top: 30px;
+    padding-right: 20px;
+}
+.footer p{
+	font-size:20px;
+	font-weight:600;
+}
+.top-header span.site-slogan {
+    padding-left: 30px;
+}
+.top-header .logo img {
+    display: block;
+	padding-left:10px;
+}
+/*
+.path-user {
+    background-color: #f3f2ef;
+}
+*/
+#block-profileblock.block-profile a {
+    margin-bottom: 10px;
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 65px;
+    display: block;
+    width: 219px;
+    text-align: center;
+    background-color: #e44d3a;
+    border-radius: 10px;
+}
+.col-sm-3 .block-profile {
+    padding: 20px;
+    text-align: left;
+    line-height: 2;
+    box-shadow: 1px 2px 2px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.block-profile .btn-primary {
+    color: #fff;
+    background-color: #e44d3a;
+    padding: 5px 65px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+	border: 0;
+}
+ aside.col-sm-3 {
+    padding-right: 20px;
+}
+section.col-sm-9 {
+    padding-left: 20px;
+}
+section.col-sm-9 .region.region-content {
+    background-color: #fff;
+    padding: 20px 20px;
+	box-shadow: 1px 2px 2px;
+    border-radius: 10px;
+	line-height:2;
+}
+.block-profile form#post-form label {
+    display: none;
+}
+.block-profile button#edit-submit {
+    color: #ffffff;
+    font-size: 10px;
+    background-color: #e44d3a;
+    border: 0;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.block-profile form#post-form input#edit-create-post {
+    width: 70%;
+    border-radius: 30px;
+    margin-left: 185px;
+}
+.block-profile form#post-form input#edit-image-post-upload {
+    width: 20%;
+    position: absolute;
+    left: 0px;
+}
+.block-profile button#edit-submit {
+    color: #ffffff;
+    font-size: 13px;
+    background-color: #e44d3a;
+    padding: 5px 25px 10px 25px !important;
+    border: 0;
+    height: 35px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 0;
+	width: 75px;
+}
+.block-profile form#post-form {
+    display: flex;
+    position: relative;
+    justify-content: space-evenly;
+}
+.block-profile .user-profile-image {
+    height: 100px;
+    width: 100%;
+    margin-bottom: 60px;
+    background: #e2dfdf;
+}
+.block-profile .user-profile-image img {
+    position: relative;
+    width: 80px;
+    display: block;
+    height: 80px;
+    padding: 1px;
+    border-radius: 20px;
+    top: 50px;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+.region-sidebar-second #myblock-form button#edit-submit {
+    margin: 0px;
+    color: #ffffff;
+    font-size: 16px;
+    background-color: #e44d3a;
+    padding: 10px 85px;
+    border: 0;
+    font-weight: 500;
+    margin-top: 30px;
+    cursor: pointer;
+    border-radius: 20px;
+	width: auto;
+}
+.group-content-first-group-group-membership-group-join-form div#edit-path-wrapper {
+    display: none;
+}
+/**
+Code to Hide Vertical Tab 
+CSS added by: Manoj.
+ */
+.tabbable {
+   display:none;
+}
+/**
+Article content Design
+CSS added by: Sandeep
+ */
+section#news-article {
+    width: 100%;
+    max-width: 2000px;
+}
+.news-heading {
+    position: absolute;
+    top: -450px;
+    left: 120px;
+    color: white;
+    padding: 20px;
+    background: rgb(0 0 0 / 50%);
+    border-radius: 5px;
+}
+.news-article-content {
+    position: relative;
+    max-width: 70%;
+    padding-left: 100px;
+}
+.news-subheading{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+.news-content{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 10px 40px 0px 0px;
+    max-width: 550px;
+}
+.like-dislike ul li {
+    list-style-type: none;
+    display: inline;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 17px;
+	line-height: 19px;
+	letter-spacing: 0.2px;
+	padding-right: 10px
+}
+.like-dislike ul {
+    padding: 10px 0px;
+}
+#news-article .like-dislike {
+   padding: 30px 0px 0px 90px;
+}
+.like-dislike ul li span{
+    padding-right: 10px;
+    position: relative;
+    bottom: 2px;
+    font-size: 15px;
+}
+.image-caption{
+	font-style: normal;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 18px;
+	letter-spacing: 0.2px;
+	color: #293033;
+	padding-top: 16px;
+}
+.news-img {
+	Width:800px;
+	Height:414px;
+}
+.background-heading{
+	font-style: normal;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 28px;
+	letter-spacing: 0.2px;
+	color: #293033;
+	margin-top:10px;
+}
+.news-article-content .para-lines{
+	font-style: normal;
+	font-weight: normal;
+	font-size: 16px;
+	line-height: 28px;
+	letter-spacing: 0.2px;
+	color: #000;
+	padding-top: 15px;
+	display:none;
+}
+.news-article-content ul {
+    padding: 0px;
+    margin-left: 25px;
+}
+.news-article-content ul li {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 28px;
+    letter-spacing: 0.2px;
+    font-feature-settings: 'salt' on;
+    color: #293033;
+}
+.news-img {
+    margin: 30px 0px 30px;
+}
+.news-article-content .under-line {
+    height: 1px;
+    background: rgba(41, 48, 51, 0.3);
+    margin-top: 30px;
+	margin-top: 48px;
+}
+.authored-content{
+	font-style: normal;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 19px;
+	letter-spacing: 0.2px;
+	color: rgba(41, 48, 51, 0.8);
+    margin-top: 10px;
+}
+.news-article-content .myimg {
+    width: 100%;
+    height: auto;
+}
+.news-article-inside h2 {
+    font-size: 34px;
+    margin: 0;
+    padding-bottom: 40px;
+}
+.news-article-inside p {
+    line-height: 1.7;
+}
+body.page-node-type-article {
+    overflow-x: hidden;
+}
+.news-article-inside .field.field--name-field-department {
+    position: absolute;
+    top: 33px;
+    left: 45px;
+}
+.news-article-inside .field.field--name-field-references {
+    position: absolute;
+    top: 66px;
+    left: 90px;
+    line-height: 2;
+}
+.news-article-inside .paragraph.paragraph--type--type-1 .col-md-12 {
+    padding-left: 0;
+}
+.news-article-inside {
+    position: relative;
+}
+/* css for birthday alert*/
+.alert_notification .notify-alert {
+    background: #ed6b5b;
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 10px;
+    font-family: 'Noto Sans';
+}
+.user-logged-in .alert_notification .container {
+    width: 100%;
+}
+#block-profileblock-2 .user-profile img {
+    width: 100%;
+    display: block;
+}
+#block-profileblock-2 a.edit_profile {
+    color: #FFFFFF;
+    color: #fff;
+    background-color: #e44d3a;
+    border-radius: 10px;
+    margin: 15px 0px;
+    border: 0;
+    display: block;
+    text-align: center;
+}

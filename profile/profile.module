@@ -1,0 +1,27 @@
+<?php
+/**
+ * Implements hook_theme().
+ */
+function profile_theme($existing, $type, $theme, $path) {
+  return [
+    'profile_block' => [
+      'variables' => [
+        //'first_name' => NULL,
+       // 'last_name' => NULL,
+       // 'date_of_birth' => NULL,
+      //  'role_or_position' => NULL,
+      //  'about' => NULL,
+      //  'register' => NULL,
+          'data' => NULL,
+        ],
+      'template' =>'profile-details',
+    ],
+    'banner_block' => [
+      'variables' => [
+        'banner_image' => NULL,
+        'article_image' => NULL,
+        ],
+      'template' =>'article-banner',
+    ],
+  ];
+}

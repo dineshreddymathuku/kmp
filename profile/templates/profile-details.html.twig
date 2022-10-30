@@ -1,0 +1,19 @@
+{% if data.user_picture %}
+  <div class="user-profile"><img src="{{ file_url(data.user_picture) }}" />
+{%endif%}
+
+<a class ="edit_profile" href="/profile/edit"> Edit Profile</a>
+<!-- Button trigger modal -->
+{% if data.register %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#formModal">
+  Register Here
+</button>
+{%endif%}
+<p><b>First name:-</b> {{ data.first_name }}</p>
+<p><b>Last name:-</b> {{ data.last_name }}</p>
+<p><b>Date of birth:-</b> {{ data.date_of_birth }}</p>
+<p><b>Designation:-</b> {{ data.role_or_position }}</p>
+<p><b>About:-</b> {{ data.about }}</p>
+</div>
+
+

@@ -1,0 +1,32 @@
+profile.form :
+  path: '/profile/edit'
+  defaults:
+    _form: '\Drupal\profile\Form\ProfileForm'
+    _title: 'My profile info'
+  requirements:
+    _permission: 'access content'
+  options:
+    no_cache: TRUE
+
+# profile.content:
+#    path: '/profileinfo'
+#    defaults:
+#      _controller: '\Drupal\profile\Controller\ProfileController::index'
+#      _title: 'MyProfile'
+#    requirements:
+#      _permission: 'access content'
+#    options:
+#      no_cache: TRUE
+
+profile.info:
+  path: '/profileinfo'
+  defaults:
+    _controller: '\Drupal\profile\Controller\ProfileController::content'
+    _title: 'My Profile'
+  requirements:
+    _permission: 'access content'
+  options:
+     no_cache: TRUE
+
+
+

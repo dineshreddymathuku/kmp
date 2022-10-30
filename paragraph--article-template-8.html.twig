@@ -1,0 +1,431 @@
+{#
+/**
+* @file
+* Default theme implementation to display a paragraph.
+*
+* Available variables:
+* - paragraph: Full paragraph entity.
+* Only method names starting with "get", "has", or "is" and a few common
+* methods such as "id", "label", and "bundle" are available. For example:
+* - paragraph.getCreatedTime() will return the paragraph creation timestamp.
+* - paragraph.id(): The paragraph ID.
+* - paragraph.bundle(): The type of the paragraph, for example, "image" or "text".
+* - paragraph.getOwnerId(): The user ID of the paragraph author.
+* See Drupal\paragraphs\Entity\Paragraph for a full list of public properties
+* and methods for the paragraph object.
+* - content: All paragraph items. Use {{ content }} to print them all,
+* or print a subset such as {{ content.field_example }}. Use
+* {{ content|without('field_example') }} to temporarily suppress the printing
+* of a given child element.
+* - attributes: HTML attributes for the containing element.
+* The attributes.class element may contain one or more of the following
+* classes:
+* - paragraphs: The current template type (also known as a "theming hook").
+* - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+* "Image" it would result in "paragraphs--type--image". Note that the machine
+* name will often be in a short form of the human readable label.
+* - paragraphs--view-mode--[view_mode]: The View Mode of the paragraph; for example, a
+* preview would result in: "paragraphs--view-mode--preview", and
+* default: "paragraphs--view-mode--default".
+* - view_mode: View mode; for example, "preview" or "full".
+* - logged_in: Flag for authenticated user status. Will be true when the
+* current user is a logged-in member.
+* - is_admin: Flag for admin user status. Will be true when the current user
+* is an administrator.
+*
+* @see template_preprocess_paragraph()
+*
+* @ingroup themeable
+*/
+#}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<section class="article-inside transforming-business-article digital-e-learning-banner-title Learning-banner">
+    {% if content.field_title_banner %}
+    <img class="transforming-banner-article-img" src="{{ file_url(paragraph.field_title_banner.entity.fileuri) }}">
+    {% endif %}
+    <div class="insight_headlines">
+        <h1>{{ content.field_article_title }}</h1>
+    </div>
+    <div class="banner-icon">
+        {% if content.field_banner_image_2 %}
+        <img src="{{ file_url(paragraph.field_banner_image_2.entity.fileuri) }}">
+        {% endif %}
+    </div>
+</section>
+
+<section class="article-para sharings-story reduces-sp learning-zoom">
+    <div class="container">
+        {# <div class="webtools"></div> #}
+        <div class="article-card-left magical-moment-card-left">
+            {# <div class="row"> #}
+                <div class="para-content">
+                    <div class="magical-img-sec">
+                        {% if content.field_article_sub_paragraph_bg %}
+                        <img src="{{ file_url(paragraph.field_article_sub_paragraph_bg.0.entity.fileuri) }}">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="para-img">
+                    <p>{{ content.field_article_sub_paragraph }}</p>
+
+                </div>
+
+                {#
+            </div> #}
+        </div>
+        <div class="article-card-right">
+            <div class="share-sec">
+                <ul class="right">
+                    <li>
+                        <a href="javascript:void(0);" class="share_link">
+                            <img src="/themes/custom/ittdigital/images/share.png">
+                            <img src="/themes/custom/ittdigital/images/share-hover.png" class="hover_icon">
+                        </a>
+                        <div class="share">
+                            <div class="sharethis-inline-share-buttons"></div>
+                        </div>
+                    </li>
+                    <li class="print_article" tabindex="0">
+                        <a href="javascript:window.print()" area-label="Print this article">
+                            <img src="/themes/custom/ittdigital/images/Print-s.png">
+                            <img src="/themes/custom/ittdigital/images/Print-s-hover.png" class="hover_icon">
+                        </a>
+                    </li>
+                    <li class="Save" tabindex="0">
+                        <a id="bookmark-this" href="javascript:void(0);" title="Save this article"
+                            area-label="Save this article">
+                            <img src="/themes/custom/ittdigital/images/save.png">
+                            <img src="/themes/custom/ittdigital/images/save-hover.png" class="hover_icon">
+                            <script>
+                                $.noConflict();
+                                jQuery(function ($) {
+                                    $('#bookmark-this').click(function (e) {
+                                        var bookmarkTitle = document.title;
+                                        var bookmarkUrl = window.location.href;
+
+                                        if ('addToHomescreen' in window && addToHomescreen.isCompatible) {
+                                            // Mobile browsers
+                                            addToHomescreen({ autostart: false, startDelay: 0 }).show(true);
+                                        } else if (/CriOS\//.test(navigator.userAgent)) {
+                                            // Chrome for iOS
+                                            alert('To add to Home Screen, launch this website in Safari, then tap the Share button and select "Add to Home Screen".');
+                                        } else if (window.sidebar && window.sidebar.addPanel) {
+                                            // Firefox <=22
+                                            window.sidebar.addPanel(bookmarkTitle, bookmarkUrl, '');
+                                        } else if ((window.sidebar && /Firefox/i.test(navigator.userAgent) && !Object.fromEntries) || (window.opera && window.print)) {
+                                            // Firefox 23-62 and Opera <=14
+                                            $(this).attr({
+                                                href: bookmarkUrl,
+                                                title: bookmarkTitle,
+                                                rel: 'sidebar'
+                                            }).off(e);
+                                            return true;
+                                        } else if (window.external && ('AddFavorite' in window.external)) {
+                                            // IE Favorites
+                                            window.external.AddFavorite(bookmarkUrl, bookmarkTitle);
+                                        } else {
+                                            // Other browsers (Chrome, Safari, Firefox 63+, Opera 15+)
+                                            alert('Press ' + (/Mac/i.test(navigator.platform) ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
+                                        }
+
+                                        return false;
+                                    });
+
+                                });
+                            </script>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div id="article_form">
+                <!-- Note :
+         - You can modify the font style and form style to suit your website.
+         - Code lines with comments Do not remove this code are required for the form to work properly, make sure that you do not remove these lines of code.
+         - The Mandatory check script can modified as to suit your business needs.
+         - It is important that you test the modified form before going live.-->
+
+                <script>
+
+                    /* Do not remove this code. */
+                    function rccallback5170585000005300001() {
+                        if (document.getElementById('recap5170585000005300001') != undefined) {
+                            document.getElementById('recap5170585000005300001').setAttribute('captcha-verified', true);
+                        }
+                        if (document.getElementById('recapErr5170585000005300001') != undefined && document.getElementById('recapErr5170585000005300001').style.display == 'block') {
+                            document.getElementById('recapErr5170585000005300001').style.display = 'none';
+                        }
+                    }
+                    function reCaptchaAlert5170585000005300001() {
+                        var recap = document.getElementById('recap5170585000005300001');
+                        if (recap != undefined && recap.getAttribute('captcha-verified') == 'false') {
+                            document.getElementById('recapErr5170585000005300001').style.display = 'block';
+                            return false;
+                        }
+                        return true;
+                    }
+                    function validateEmail5170585000005300001() {
+                        var form = document.forms['WebToLeads5170585000005300001'];
+                        var emailFld = form.querySelectorAll('[ftype=email]');
+                        var i;
+                        for (i = 0; i < emailFld.length; i++) {
+                            var emailVal = emailFld[i].value;
+                            if ((emailVal.replace(/^\s+|\s+$/g, '')).length != 0) {
+                                var atpos = emailVal.indexOf('@');
+                                var dotpos = emailVal.lastIndexOf('.');
+                                if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+                                    alert('Please enter a valid email address. ');
+                                    emailFld[i].focus();
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+
+                    function checkMandatory5170585000005300001() {
+                        var mndFileds = new Array('Company', 'First Name', 'Last Name', 'Email');
+                        var fldLangVal = new Array('Company', 'First\x20Name', 'Last\x20Name', 'Business\x20Email');
+                        for (i = 0; i < mndFileds.length; i++) {
+                            var fieldObj = document.forms['WebToLeads5170585000005300001'][mndFileds[i]];
+                            if (fieldObj) {
+                                if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                                    if (fieldObj.type == 'file') {
+                                        alert('Please select a file to upload.');
+                                        fieldObj.focus();
+                                        return false;
+                                    }
+                                    alert(fldLangVal[i] + ' cannot be empty.');
+                                    fieldObj.focus();
+                                    return false;
+                                } else if (fieldObj.nodeName == 'SELECT') {
+                                    if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                        alert(fldLangVal[i] + ' cannot be none.');
+                                        fieldObj.focus();
+                                        return false;
+                                    }
+                                } else if (fieldObj.type == 'checkbox') {
+                                    if (fieldObj.checked == false) {
+                                        alert('Please accept  ' + fldLangVal[i]);
+                                        fieldObj.focus();
+                                        return false;
+                                    }
+                                }
+                                try {
+                                    if (fieldObj.name == 'Last Name') {
+                                        name = fieldObj.value;
+                                    }
+                                } catch (e) { }
+                            }
+                        }
+                        if (!validateEmail5170585000005300001()) {
+                            return false;
+                        }
+
+                        if (!reCaptchaAlert5170585000005300001()) {
+                            return false;
+                        }
+                        document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+                    }
+
+                    function tooltipShow5170585000005300001(el) {
+                        var tooltip = el.nextElementSibling;
+                        var tooltipDisplay = tooltip.style.display;
+                        if (tooltipDisplay == 'none') {
+                            var allTooltip = document.getElementsByClassName('zcwf_tooltip_over');
+                            for (i = 0; i < allTooltip.length; i++) {
+                                allTooltip[i].style.display = 'none';
+                            }
+                            tooltip.style.display = 'block';
+                        } else {
+                            tooltip.style.display = 'none';
+                        }
+                    }
+                </script>
+                <div>
+                  <h2>{{ content.field_benefits_title }}</h2>
+                  <p class="lets-chat">{{ content.field_article_section_paragraph }}</p>
+                </div>
+                <div id='crmWebToEntityForm' class='zcwf_lblLeft crmWebToEntityForm digital-form-border'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <META HTTP-EQUIV='content-type' CONTENT='text/html;charset=UTF-8'>
+                    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+                    <form action='https://crm.zoho.com/crm/WebToLeadForm' name=WebToLeads5170585000005300001
+                        method='POST'
+                        onSubmit='javascript:document.charset="UTF-8"; return checkMandatory5170585000005300001()'
+                        accept-charset='UTF-8'>
+                        <input type='text' style='display:none;' name='xnQsjsdp'
+                            value='08b736a1a329b104cd9c86a06931bec5dbb90cfa654d7d929bbbeb2051adc07d'></input>
+                        <input type='hidden' name='zc_gad' id='zc_gad' value=''></input>
+                        <input type='text' style='display:none;' name='xmIwtLD'
+                            value='2b7f3ac3392f57c59f83c92b14e8a8d1607a9dfe171b2c687c6b28401674b6f4'></input>
+                        <input type='text' style='display:none;' name='actionType' value='TGVhZHM='></input>
+                        <input type='text' style='display:none;' name='returnURL'
+                            value='https&#x3a;&#x2f;&#x2f;ittdigital.com'>
+                        </input>
+                        <!-- Do not remove this code. -->
+                        <!-- <div class='zcwf_title' style='max-width: 600px;color: black;'>Contact Us Page</div> -->
+                        <div class='zcwf_row'>
+                            <div class='zcwf_col_lab' style='font-size:13px; font-family: Arial;'><label
+                                    for='Company'>Company<span style='color:red;'>*</span></label></div>
+                            <div class='zcwf_col_fld'><input type='text' id='Company' name='Company' maxlength='200'
+                                    placeholder="Company"></input>
+                                <div class='zcwf_col_help'></div>
+                            </div>
+                        </div>
+                        <div class='zcwf_row'>
+                            <div class='zcwf_col_lab' style='font-size:13px; font-family: Arial;'><label
+                                    for='First_Name'>First Name<span style='color:red;'>*</span></label></div>
+                            <div class='zcwf_col_fld'><input type='text' id='First_Name' name='First Name'
+                                    maxlength='40' placeholder="First Name"></input>
+                                <div class='zcwf_col_help'></div>
+                            </div>
+                        </div>
+                        <div class='zcwf_row'>
+                            <div class='zcwf_col_lab' style='font-size:13px; font-family: Arial;'><label
+                                    for='Last_Name'>Last Name<span style='color:red;'>*</span></label></div>
+                            <div class='zcwf_col_fld'><input type='text' id='Last_Name' name='Last Name' maxlength='80'
+                                    placeholder="Last name"></input>
+                                <div class='zcwf_col_help'></div>
+                            </div>
+                        </div>
+                        <div class='zcwf_row'>
+                            <div class='zcwf_col_lab' style='font-size:13px; font-family: Arial;'><label
+                                    for='Email'>Business Email<span style='color:red;'>*</span></label></div>
+                            <div class='zcwf_col_fld'><input type='text' ftype='email' id='Email' name='Email'
+                                    maxlength='100' placeholder='Email'></input>
+                                <div class='zcwf_col_help'></div>
+                            </div>
+                        </div>
+                         <div class='zcwf_row'>
+                            <div class='zcwf_col_lab'></div>
+                            <div class='zcwf_col_fld'>
+                                <div class='g-recaptcha recaptcha-mb'
+                                    data-sitekey='6LdqdO0gAAAAAG9C1wRnDLRVUeInZWYM8lBizw9l' data-theme='light'
+                                    data-callback='rccallback5170585000005300001' captcha-verified='false'
+                                    id='recap5170585000005300001'>
+                                </div>
+                                <div id='recapErr5170585000005300001'
+                                    style='font-size:11px;color:red;display: none; margin-bottom: 5px; line-height: 14px;'>
+                                    Captcha
+                                    validation failed.
+                                    If you are not a robot then please try again.</div>
+                            </div>
+                        </div>
+                        <div class='zcwf_row'>
+                            <div class='zcwf_col_lab'></div>
+                            <div class='zcwf_col_fld_flex dig-send'><input type='submit' id='formsubmit'
+                                    class='formsubmit zcwf_button' value='Submit' title='Submit'><input type='reset'
+                                    class='zcwf_button' name='reset' value='Reset' title='Reset'></div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="page-section path-learning" id="about">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading">{{ content.field_article_sub_heading }}</h2>
+                <h3 class="section-subheading">{{ content.field_paragraph|raw }}</h3>
+            </div>
+            <ul class="timeline">
+                <li class="circleOne">
+                    <div class="timeline-image">
+                        <span class="leftLine"></span>
+                        <span>1</span>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!-- <h4>2009-2011</h4> -->
+                            <h4 class="subheading subheadingLeft"><span class="greenHeading"> BRINGS MORE STRUCTURE TO LEARNING</span> <img src="/themes/custom/ittdigital/images/learning.svg"> </h4>
+                        </div>
+                        <div class="timeline-body"><p class="timelinePara leftPara">When you have a clear learning objective, it’s easier to know what steps need to be taken and in what order they should be completed. This is the first big advantage of a learning path: <i> it makes your training more organized and learner-friendly.</i></p></div>
+                    </div>
+                </li>
+                <li class="timeline-inverted circleTwo">
+                    <div class="timeline-image">
+                        <span>2</span>
+                        <span class="rightLine"></span>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!-- <h4>March 2011</h4> -->
+                            <h4 class="subheading subheadingRight"><img src="/themes/custom/ittdigital/images/learner.svg"><span class="greenHeading"> ENGAGES THE LEARNER </span> </h4>
+                        </div>
+                        <div class="timeline-body"><p class="timelinePara rightPara">The learner is the hero of the journey. Integrating a learning path into your course allows you to cater to the learner’s unique strengths by providing a student-centered approach.</p></div>
+                    </div>
+                </li>
+                <li class="circleThree">
+                    <div class="timeline-image">
+                        <span class="leftLine"></span>
+                        <span>3</span>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!-- <h4>December 2015</h4> -->
+                            <h4 class="subheading subheadingLeft"><span class="greenHeading">  ENCOURAGES LEARNERS TO GO THE EXTRA MILE </span> <img src="/themes/custom/ittdigital/images/mile.svg"> </h4>
+                        </div>
+                        <div class="timeline-body"><p class="timelinePara leftPara">Beyond representing the backbone of the learning process, learning paths represent the stealthy presence of a mentor who gives us that little boost we may need in times of doubt. In this way, you can guide your learners in specific avenues tailored to help them achieve their goals and encourage them to explore additional areas of knowledge they might not otherwise encounter.</p></div>
+                    </div>
+                </li>
+                <li class="timeline-inverted circleFour">
+                    <div class="timeline-image">
+                        <span>4</span>
+                        <span class="rightLine"></span>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!-- <h4>March 2011</h4> -->
+                            <h4 class="subheading subheadingRight"><img src="/themes/custom/ittdigital/images/feedback.svg"><span class="greenHeading">  PROMOTES CONTINUOUS FEEDBACK </span> </h4>
+                        </div>
+                        <div class="timeline-body"><p class="timelinePara rightPara">Another advantage of having a learning path is that it allows you to offer continuous feedback to your learners. As they go through the different stages of their journey, you can monitor their progress and performance and provide them with the feedback they need.</p></div>
+                    </div>
+                </li>
+                <li class="circleFive">
+                    <div class="timeline-image">
+                        <span class="leftLine"></span>
+                        <span>5</span>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <!-- <h4>December 2015</h4> -->
+                            <h4 class="subheading subheadingLeft"><span class="greenHeading">  NURTURES A LEARNING ENVIRONMENT </span> <img src="/themes/custom/ittdigital/images/environment.svg"> </h4>
+                        </div>
+                        <div class="timeline-body"><p class="timelinePara leftPara">Last but not least, learning paths help create a learning environment that is both stimulating and supportive. When learners feel they are progressing and moving towards their goals, they are more likely to be engaged and motivated to continue learning.</p></div>
+                    </div>
+                </li>
+
+                <li class="timeline-inverted circleFinal">
+                    <div class="timeline-image lastCircle" id="lastCircle"></div>
+                </li>
+            </ul>
+        </div>
+    </section>
+<section class="skill-section rewriting-stories epic-learning">
+    <div class="container">
+        <div class="skill-section-inner">
+            <div class="what-skill-section">
+                <h3> {{ content.field_sub_title }}</h3>
+                <p>{{ content.field_description }}</p>
+            </div>
+            <div class="skill-info-section">
+                <div class="skill-info">
+                    <div class="digital-stories-title epic-learning-process">{{ content.field_title }}</div>
+                </div>
+                <div class="skill-info-banner rewriting-story">
+                    {% if content.field_good_digital_story_banner %}
+                    <img src="{{ file_url(paragraph.field_good_digital_story_banner.entity.fileuri) }}">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
